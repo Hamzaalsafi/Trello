@@ -2,7 +2,7 @@ import React from 'react'
 
 export function NavBar() {
   return (
-    <nav className='bg-slate-700 p-2 text-lg'>
+    <nav className='p-3  bg-slate-950 text-lg fixed w-screen top-0 z-10 '>
       <div className='flex justify-start gap-5' >
         <p className='text-zinc-50 cursor-pointer'>logo here</p>
         <p className='text-zinc-50 cursor-pointer'>Home</p>

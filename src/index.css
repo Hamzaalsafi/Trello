@@ -1,3 +1,201 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+.ListCssCustom {
+    flex-shrink: 0;
+  }
+  i {
+    text-align: center;
+    line-height: 55px;
+    color: #acacac;
+    transition: 0.5s;
+    font-size: 1.1rem;
+  }
+  
+@media (650px>width) {
+    .ListCssCustom {
+    width: 90%;
+    min-width:90%;
+    justify-item:center;
+    }
+   
+
+}
+
+@media (650px<width) {
+    .ListCssCustom {
+    width:280px;
+    min-width:280px;
+    }
+    .BordContainer{
+        justify-content: start;
+    }
+   
+ 
+
+}
+.logincontainer {
+    position: relative; 
+}
+
+.logincontainer::before{
+    content: "";
+    display: block;
+   position: absolute;
+   width: 50%;
+    height: 100%;
+    z-index: 1;
+    top: 0;
+    left:0;
+    border-radius: 0.75rem;
+  
+    background-color:#0F172A ;
+    margin-bottom: 20px;
+    transition: left 0.7s ease, background-color 0.7s ease;
+}
+.signupmode{
+    z-index:0;
+    position: absolute;
+    opacity:0;
+    margin:2rem;
+    transform: translateX(0); 
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.animate-right .signupmode{
+    opacity:1;
+    z-index:1000;
+ 
+    transform: translateX(-10px);
+}
+.signinmode{
+    margin:2rem;
+    z-index:1000;
+    position: absolute;
+    transform: translateX(10px); 
+    opacity:1;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.animate-right .signinmode{
+    opacity:0;
+    z-index:0;
+ 
+    transform: translateX(0); 
+}
+.singinfrom{
+  opacity:0;
+  z-index: 0;
+  
+}
+.animate-right .singinfrom{
+    opacity:1;
+    z-index: 1000;
+
+  }
+.signupfrom{
+    opacity:1;
+ 
+    z-index: 1000;
+}
+.animate-right .signupfrom{
+    opacity:0;
+    z-index: 0;
+    
+  }
+.animate-right::before{
+    left: 50%;
+    transition: left 0.5s ease-in-out; 
+}
+@media (max-width: 1000px) {
+    .logincontainer {
+        flex-direction: column;
+
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        border-radius:0;
+        box-shadow: none;
+        overflow: hidden;
+        
+    }
+  
+    .logincontainer::before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 100%;
+        
+        height: 50%;
+  
+        z-index: 1;
+        border-radius:0;
+        top: 0; 
+        left: 0;
+        background-color: #0F172A;
+        transition: top 0.7s ease, background-color 0.7s ease;
+    }
+
+    .signupmode {
+        z-index: 0;
+        position: absolute;
+        opacity: 0;
+        transform: translateY(0);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .animate-right .signupmode {
+        opacity: 1;
+        z-index: 1000;
+        transform: translateY(-10px);
+    }
+
+    .signinmode {
+        z-index: 1000;
+        position: absolute;
+        transform: translateY(10px);
+        opacity: 1;
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .animate-right .signinmode {
+        opacity: 0;
+        z-index: 0;
+        transform: translateY(0);
+    }
+
+    .singinfrom {
+        opacity: 0;
+        z-index: 0;
+    }
+
+    .animate-right .singinfrom {
+        opacity: 1;
+        z-index: 1000;
+    }
+
+    .signupfrom {
+        opacity: 1;
+        z-index: 1000;
+    }
+
+    .animate-right .signupfrom {
+        opacity: 0;
+        z-index: 0;
+    }
+
+    .animate-right::before {
+        top: 50%; 
+        transition: top 0.5s ease-in-out; 
+    }
+}
+
+
+
