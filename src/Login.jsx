@@ -1,26 +1,25 @@
 import React, { useState } from 'react';
 import { getFirestore, setDoc, doc } from 'firebase/firestore';
-import { useNavigate,Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'; 
  import { auth } from './firebase2';
+ 
 export function Login() {
     const [animate, setAnimate] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const [success, setSuccess] = useState('');
-  
     const navigate = useNavigate();
     const [name2, setName2] = useState('');
     const [email2, setEmail2] = useState('');
     const [password2, setPassword2] = useState('');
     const [error2, setError2] = useState('');
-    const [success2, setSuccess2] = useState('');
+
     const db = getFirestore();
     const handleLogin = async (e) => {
       e.preventDefault();
       setError('');
-      setSuccess('');
+   
 
       if (!email || !password) {
           setError('Please fill in both email and password.');
@@ -30,7 +29,7 @@ export function Login() {
       try {
           const userCredential = await signInWithEmailAndPassword(auth, email, password);
          
-          setSuccess('Logged in successfully!');
+     
           navigate('/Bord'); 
       } catch (error) {
           console.error('Login error:', error);
@@ -40,7 +39,7 @@ export function Login() {
   const handleCreateAccount = async (e) => {
     e.preventDefault();
     setError2('');
-    setSuccess2('');
+
  
     if (!name2 || !email2 || !password2) {
         setError2('Please fill in all fields (name, email, and password).');
@@ -59,8 +58,7 @@ export function Login() {
             createdAt: new Date(),
         });
 
-        setSuccess2('Account created successfully!');
-
+       
        
       
                 navigate('/Bord'); 
@@ -84,7 +82,7 @@ export function Login() {
             <button onClick={handleAnimation} className="bg-blue-500 hover:bg-blue-600 text-gray-100 m-4  py-1.5 px-20 rounded-2xl  text-m">
             Sign in
 </button>
-        <img src='/public/cat.svg' alt="cat" />  
+        <img src='/cat.svg' className=' hover:scale-110 hover:transform-cpu' alt="cat" />  
         </div>
         
         <form className='singinfrom flex flex-col justify-center items-center' onSubmit={handleLogin}>
@@ -113,12 +111,12 @@ export function Login() {
       </div>
       <div className='flex flex-col justify-center items-center  justify-self-end'>
       <div className='signupmode flex flex-col justify-center items-center'>
-             <h1 className=' text-center text-2xl text-gray-100 mb-2 '>New to our platform?</h1>
+             <h1 className=' text-center text-2xl text-gray-100 mb-2 '>New to KittyTask??</h1>
             <p className='mb-5 text-center text-lg text-gray-100 '>Start organizing your life today! Sign up to manage your tasks, projects, and ideas all in one place.</p>
             <button onClick={handleAnimation} className="bg-blue-500 hover:bg-blue-600 text-gray-100 m-4  py-1.5 px-20 rounded-2xl  text-m">
             Sign in
 </button>
-<img src='/public/cat2.svg' alt="cat" />  
+<img src='/cat2.svg' className=' hover:scale-110 hover:transform-cpu' alt="cat" />  
         </div>
      
       <form className='signupfrom flex flex-col  items-center' onSubmit={handleCreateAccount}>
@@ -142,7 +140,7 @@ export function Login() {
 </svg>
         <input type='password' placeholder='Password' className='bg-neutral-300 bg-opacity-70 p-2 px-9 m-2 text-black  rounded-2xl w-72'   onChange={(e) => setPassword2(e.target.value)}/>
         </div>
-        <button type='submit' className="bg-blue-500 hover:bg-blue-600 text-gray-100 m-4  py-1.5 px-9 rounded-2xl  text-m">
+        <button type='submit' className="bg-blue-500 hover:bg-blue-600 text-gray-100 fm-4  py-1.5 px-9 rounded-2xl  text-m">
             Sign up
 </button>
 {error2 && <p className='text-center text-xs  text-red-600'>{error2}</p>} 

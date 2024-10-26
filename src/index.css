@@ -6,9 +6,274 @@ body {
     font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
-  overflow-y: hidden;
+
   overflow-x: auto;
 }
+
+
+.main {
+    position: relative;
+    max-height: 200px;
+  }
+  
+  .main .input {
+    max-width: 165px;
+    border: none;
+    border-bottom: solid gray 1px;
+    background: transparent;
+    outline: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    transition: 0.2s;
+    
+    color: #e8e8e8;
+    font-size: 1.3rem;
+  }
+    .button2 {
+    width: 179px;
+    border: none;
+    border-bottom: solid gray 1px;
+    background: transparent;
+    outline: none;
+    padding-top: 10px;
+    padding: 10px;
+    padding-bottom: 10px;
+    transition: 0.2s;
+
+    font-size: 1.36rem;
+  }
+  .main .input:focus,.input:hover ,.main .input:valid ,.button2:hover {
+    border-color: lightblue;
+  }
+  
+  .main label span {
+    position: absolute;
+    top: 0px;
+    display: block;
+    transition: 0.2s;
+    pointer-events: none;
+    font-size: 25px;
+    color: gray;
+    opacity: 0%;
+  }
+  .color{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  }
+  .main .input:focus + label span , .main .input:valid + label span {
+    color: lightblue;
+    top: -28px;
+    opacity: 100%;
+  }
+  
+  .main .input:focus + label p , .main .input:valid + label p {
+    opacity: 0;
+  }
+
+
+.toggle--checkbox {
+    display: none;
+}
+
+.toggle--checkbox:checked ~ .background {
+    background: var(--indigo-background);
+}
+
+.toggle--checkbox:checked + .toggle--label {
+    background: var(--indigo-color);
+    border-color: var(--indigo-border);
+}
+
+.toggle--checkbox:checked + .toggle--label .toggle--label-background {
+    left: 30px;
+    width: 4px; 
+}
+.graph__wrapper {
+    position: absolute;
+    top:6%;
+    left: 43%;
+    z-index: -1;
+  }
+  @media (700px>width) {
+    .graph__wrapper {
+        left:0;
+        top:0;
+      }
+      .graph__wrapper svg{
+        width: 220px;
+      } 
+  }
+  .graph__wrapper2 {
+    position: absolute;
+    top:48%;
+
+   transform: rotateY(180deg) rotateX(180deg);
+    left: 25%;
+    z-index: -1;
+  }
+ 
+  @media (700px>width) {
+    .graph__wrapper2 {
+        left: 39%;
+        top:52%;
+      } 
+  }
+
+  .path {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: dash 3s linear infinite;
+    animation-delay: 1s;
+  }
+ 
+  @keyframes dash {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .dashed {
+    stroke-dasharray: 5, 12;
+  }
+  
+  #arrow {
+    animation: arrow 2s linear infinite;
+    opacity: 0;
+  }
+  
+  
+  @keyframes arrow {
+    to {
+      opacity: 1;
+    }
+  }
+ 
+
+
+
+.NewtonsCradleH1{
+    box-shadow: rgb(234, 32, 136,.4) 0px 5px, rgb(234, 32, 136,.3) 0px 10px, rgb(234, 32, 136,.2) 0px 15px, rgb(234, 32, 136,.15) 0px 20px, rgb(234, 32, 136,.1) 0px 25px;
+    color:#0f172a00;
+}
+
+
+.NewtonsCradleHr {
+    border: 2px solid rgb(195, 194, 194); 
+   z-index: 100;
+    width: 85%;
+    position: absolute;
+    top: 18.91%;
+    border-radius: 20%;
+}
+@media (width>700px) {
+    .NewtonsCradleHr{
+      width: 64%;
+    }
+}
+
+.motivationalQuotes {
+    margin-top: 2em;
+    
+
+    position: fixed;
+   
+    border-radius: 10px;
+    width: 50%; 
+    max-width: 500px;
+    height: 12vh; 
+    
+  
+
+}
+
+@media (659px>width) {
+    .motivationalQuotes {
+        max-width: 80vw; 
+        width: 100%;
+        height: 10vh; 
+        margin-top:0;
+    }
+    
+}
+.inside {
+padding:1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 100%; 
+    background-color: rgba(232, 61, 149, 0.7);
+    border-radius: 40px;
+}
+
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.inside::after, .inside::before {
+    border-radius: 40px;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    background-image: conic-gradient(from var(--angle), transparent, #ea2088);
+    padding: 3.3px;
+    animation: 7s spin linear infinite;
+}
+
+.inside::before {
+    filter: blur(1.2rem);
+    opacity: 0.65;
+}
+
+@keyframes spin {
+    from {
+        --angle: 0deg;
+    }
+    to {
+        --angle: 360deg;
+    }
+}
+
+.motivationalQuotes h1 {
+
+    text-align: center;
+   
+}
+
+
+
+body {
+  
+    overflow-y: auto;
+
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1000; 
+    user-select: all;
+    display: none; 
+    cursor: default !important;
+}
+
+
+.overlay.visible {
+    display: block; 
+   
+}
+
 .ListCssCustom {
     flex-shrink: 0;
   }
@@ -19,29 +284,120 @@ body {
     transition: 0.5s;
     font-size: 1.1rem;
   }
+  @keyframes swing {
+    0% {
+      transform: translate(0, 0);    
+    }
+    25% {
+      transform: translate(1.5px, -1.5px);    
+    }
+    50% {
+      transform: translate(0, 0);  
+    }
+    75% {
+      transform: translate(-1.5px, 1.5px);
+    }
+    100% {
+      transform: translate(0, 0);  
+    }
+  }
   
+  .swing {
+    animation: swing 0.5s ease-in-out infinite; 
+  }
+  .dragList{
+    box-shadow:10px 4px 20px rgba(0, 0, 0, 0.5);
+    opacity: 85%;
+  }
+  .btn{
+    width:290px;
+    min-width:290px;
+   }
 @media (650px>width) {
     .ListCssCustom {
-    width: 90%;
-    min-width:90%;
-    justify-item:center;
+        width:95%;
+        min-width:90%;
+        
     }
+    .leftarrow{
+        left:1px;
+    }
+    .rightarrow{
+        right:1px;
+    }
+   .cardinput{
+    z-index:1000;
+    max-width: 220px;
+    width: 67%;
+ 
+   }
+ 
+   .BordContainer{
    
-
+    
+    scroll-snap-type:x mandatory;
+   }
+   .btn{
+    width:95%;
+    min-width:95%;
+    scroll-snap-align: start;
+    margin-right: 1.3em;
+   }
 }
+.ListCssCustom{
+    max-height: 80vh;
+}
+.kkkk {
+    max-height: 58vh;
+    overflow-y: auto;
+    margin: 1em auto;
+  
+    -webkit-overflow-scrolling: touch;
+    touch-action: auto;
+  }
+  
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 11px;
+   
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: rgba(31, 31, 31, 0.708);
+    border-radius: 3px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgba(139, 139, 139, 0.908);
+    border-radius: 3px;
+    
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(139, 139, 139, 0.708);
+  }
+  
+  /* Allow clicks on the scrollbar track */
+  ::-webkit-scrollbar-track:hover {
+    pointer-events: auto;
+  }
+  
 
 @media (650px<width) {
     .ListCssCustom {
-    width:280px;
-    min-width:280px;
+    width:290px;
+    min-width:290px;
+  
     }
     .BordContainer{
         justify-content: start;
     }
-   
- 
 
 }
+
 .logincontainer {
     position: relative; 
 }
@@ -124,9 +480,9 @@ body {
         border-radius:0;
         box-shadow: none;
         overflow: hidden;
-        
+       
     }
-  
+
     .logincontainer::before {
         content: "";
         display: block;
@@ -197,5 +553,192 @@ body {
     }
 }
 
+.CARD::before {
+    content: "";
+    touch-action: none;
+    display: block;
+    position: relative;
+    width:45px;
+    margin-bottom: -1px;
+    z-index: -1;
+    height:7px;
+    border-radius:15px;
+    background-color:#1F2937;
+}
+#box {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.cat * {
+    text-align: center;
+    margin-left: auto; 
+    margin-right: auto; 
+}
+
+.cat, .ears, .eyes, .muzzle, .body, .paw, .tail, .tail-segment {
+    position: relative;
+}
+
+.head, .body, .paw, .tail-segment {
+    background-color: #000000;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.cat {
+    margin-top: 9.75px; /* Adjusted for size */
+    animation: purr 5s infinite cubic-bezier(0, .75, 1, .25);
+}
+.catlogo{
+    margin-top:0px;
+}
+.cat:hover {
+    animation: none; /* Stop animation on hover */
+}
+
+.head {
+    width: 19.5px; /* Adjusted width */
+    height: 17.55px; /* Adjusted height */
+    border-radius: 50%;
+    z-index: 100;
+    animation: head-bob 5s infinite ease-in-out;
+}
+
+.cat:hover .head {
+    animation: none; /* Stop head bobbing on hover */
+}
+
+.ears {
+    top: -3.9px; /* Adjusted for size */
+    z-index: -100;
+}
+
+.ear {
+    width: 0;
+    height: 0;
+    border-left: 4.88px solid transparent; /* Adjusted ears */
+    border-right: 4.88px solid transparent;
+    border-bottom: 9.75px solid #000000;
+}
+
+.ear.left {
+    transform: rotate(-20deg) translateX(-1.95px);
+}
+
+.ear.right {
+    transform: rotate(20deg) translateX(1.95px);
+}
+
+.eyes {
+    top: -3.25px; /* Adjusted for size */
+    width: 60%;
+}
+
+.eye {
+    width: 3.12px; /* Adjusted eye size */
+    height: 3.12px; /* Adjusted eye size */
+    border-radius: 50%;
+    background-color: #FFD700;
+    animation: eye-blink 5s infinite;
+}
+
+.cat:hover .eye {
+    animation: none; /* Stop eye blinking on hover */
+   
+}
+
+.muzzle {
+    top: 9.75px; /* Adjusted for size */
+}
+
+.nose {
+    width: 0;
+    height: 0;
+    border-left: 1.7px solid transparent; /* Adjusted nose */
+    border-right: 1.7px solid transparent;
+    border-top: 1.7px solid #666666;
+}
+
+.body {
+    width: 39px; /* Adjusted body size */
+    height: 23.4px; /* Adjusted body size */
+    border-top-left-radius: 39px;
+    border-top-right-radius: 39px;
+    top: -14.63px; /* Adjusted for size */
+    left: 17.55px; /* Adjusted for size */
+    z-index: -10;
+}
+
+.paw {
+    height: 5.85px; /* Adjusted paw size */
+    width: 9.75px; /* Adjusted paw size */
+    border-radius: 4.88px;
+    left: -19.5px; /* Adjusted for size */
+    top: 17.55px; /* Adjusted for size */
+}
+
+.tail {
+    position: absolute;
+    left: 53.19px; 
+    top: 24.5px; 
+    transform: rotate(90deg);
+}
+
+.tail-segment {
+    height: 2.6px; /* Adjusted tail segment size */
+    width: 3.9px; /* Adjusted tail segment size */
+    border-radius: 2.5px;
+    top: 0px;
+    left: 1.3px; /* Adjusted for size */
+    animation: tail-swish 5s infinite cubic-bezier(.8, 0, .2, 1);
+}
+
+
+
+@keyframes tail-swish {
+    0% {transform: rotate(12deg);}
+    10% {transform: rotate(12deg);}
+    40% {transform: rotate(-5deg);}
+    50% {transform: rotate(5deg);}
+    60% {transform: rotate(-5deg);}
+    100% {transform: rotate(12deg);}
+  }
+
+@keyframes head-bob {
+    0% { transform: translateX(-1.95px) translateY(5.85px); }
+    10% { transform: translateX(-1.95px) translateY(5.85px); }
+    30% { transform: translateX(0) translateY(0); }
+    75% { transform: translateX(0) translateY(0); }
+    90% { transform: translateX(-1.95px) translateY(5.85px); }
+    100% { transform: translateX(-1.95px) translateY(5.85px); }
+}
+
+@keyframes eye-blink {
+    0% { transform: scaleY(0); }
+    10% { transform: scaleY(0); }
+    15% { transform: scaleY(1); }
+    48% { transform: scaleY(1); }
+    50% { transform: scaleY(0); }
+    52% { transform: scaleY(1); }
+    90% { transform: scaleY(1); }
+    95% { transform: scaleY(0); }
+    100% { transform: scaleY(0); }
+}
+
+@keyframes purr {
+    0% { left: -0.15px; }
+    1% { left: 0px; }
+    2% { left: -0.15px; }
+    3% { left: 0px; }
+    /* Continue with the same pattern as before */
+}
 
 
