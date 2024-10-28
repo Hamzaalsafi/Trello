@@ -37,7 +37,7 @@ export function MiniBoard(Board) {
     } : {};
 
     const BoardClick = () => {
-        navigate(`/Board/${Board.id}`, { state: Board });
+        navigate(`/Trello/Board/${Board.id}`, { state: Board });
     };
 
     return (

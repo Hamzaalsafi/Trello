@@ -120,7 +120,7 @@ const handleTitle=(e)=>{
           };
       
           await setDoc(BoardDocRef, newBoard);
-          navigate(`/Board/${id}`, { state: newBoard });
+          navigate(`/Trello/Board/${id}`, { state: newBoard });
         } catch (error) {
           console.log(error);
         }

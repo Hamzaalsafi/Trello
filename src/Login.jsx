@@ -30,7 +30,7 @@ export function Login() {
           const userCredential = await signInWithEmailAndPassword(auth, email, password);
          
      
-          navigate('/Home'); 
+          navigate('/Trello/Home'); 
       } catch (error) {
           console.error('Login error:', error);
           setError('Error logging in: ' + error.message);
@@ -74,7 +74,7 @@ export function Login() {
         avatar: { color: avatarColor, initials: initials }, // Save avatar details in Firestore
       });
   
-      navigate('/Home'); 
+      navigate('/Trello/Home'); 
     } catch (error) {
       console.error('Error creating account:', error);
       setError2('Error creating account: ' + error.message);
