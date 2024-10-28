@@ -30,45 +30,56 @@ export function Login() {
           const userCredential = await signInWithEmailAndPassword(auth, email, password);
          
      
-          navigate('/Bord'); 
+          navigate('/Home'); 
       } catch (error) {
           console.error('Login error:', error);
           setError('Error logging in: ' + error.message);
       }
   };
+  const getColorFromName = (name) => {
+    let hash = 0;
+    for (let i = 0; i < name.length; i++) {
+      hash = name.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const color = `hsl(${hash % 360}, 70%, 80%)`; 
+    return color;
+  };
+  
+  // Helper to get initials from the name
+  const getInitials = (name) => {
+    return name.split(" ").map((n) => n[0]).join("");
+  };
   const handleCreateAccount = async (e) => {
     e.preventDefault();
     setError2('');
-
- 
+  
     if (!name2 || !email2 || !password2) {
-        setError2('Please fill in all fields (name, email, and password).');
-        return;
+      setError2('Please fill in all fields (name, email, and password).');
+      return;
     }
+  
     const auth2 = getAuth();
     try {
-        const userCredential = await createUserWithEmailAndPassword(auth2, email2, password2);
-        const user = userCredential.user;
-
-       
-        await auth.currentUser.reload();
-        await setDoc(doc(db, 'users', user.uid), {
-            name: name2,
-            email: email2,
-            createdAt: new Date(),
-        });
-
-       
-       
-      
-                navigate('/Bord'); 
-       
-
+      const userCredential = await createUserWithEmailAndPassword(auth2, email2, password2);
+      const user = userCredential.user;
+  
+      // Generate color and initials based on the user's name
+      const avatarColor = getColorFromName(name2);
+      const initials = getInitials(name2);
+  
+      await setDoc(doc(db, 'users', user.uid), {
+        name: name2,
+        email: email2,
+        createdAt: new Date(),
+        avatar: { color: avatarColor, initials: initials }, // Save avatar details in Firestore
+      });
+  
+      navigate('/Home'); 
     } catch (error) {
-        console.error('Error creating account:', error);
-        setError2('Error creating account: ' + error.message);
+      console.error('Error creating account:', error);
+      setError2('Error creating account: ' + error.message);
     }
-};
+  };
     const handleAnimation = () => {
         setAnimate(!animate);
     };

@@ -7,6 +7,7 @@ import { doc,getDocs,getDoc , setDoc,updateDoc } from 'firebase/firestore';
 import { auth } from './firebase2'; 
 import { useLocation } from 'react-router-dom';
 import { db } from './firebase2';
+import {ShareMenu} from './ShareMenu'
 import { DndContext,TouchSensor, closestCenter, useSensor, useSensors, MouseSensor } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
 import { useSortable } from '@dnd-kit/sortable';
@@ -19,25 +20,40 @@ export function Bord() {
   const AddingListRef=useRef(null);
   const [isOpen, setIsOpen] = useState(false);
   const listRefs = useRef([]);
-  const { menuOpen } = useMenuContext();
   const [isDragging, setIsDragging] = useState(false);
-  const AddingAnotherListRef=useRef(null);
   const [title,settitle]=useState('');
-  const [inMobile,setinMobile]=useState(false);
   const [lists, setlists] = useState([]);
   const location=useLocation();
   const Board=location.state;
-  const [Boards2,setBoards2]=useState({});
-  const [visibility, setVisibility] = useState();
+  const [Boards2,setBoards2]=useState(Board);
+  const [visibility, setVisibility] = useState(Board.boardVisibility);
+  const [sharedWith,setsharedWith]=useState(Board.sharedWith);
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
+  
+  const [isOpen2, setIsOpen2] = useState(false);
+  const dropdown2Ref = useRef(null);
+  const handleClickOutsideForShare2 = (event) => {
+      if (dropdown2Ref.current && !dropdown2Ref.current.contains(event.target)) {
+        setIsOpen2(false);
+      }
+    };
+    useEffect(() => {
+     
+      document.addEventListener('mousedown', handleClickOutsideForShare2);
+      return () => {
+        
+        document.removeEventListener('mousedown', handleClickOutsideForShare2);
+      };
+    }, []);
   useEffect(() => {
+   
     const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
       if (user) {
         const fetchBoard = async () => {
           try {
-            const boardRef = doc(db, `users/${user.uid}/Boards/${Board.id}`); // Fetch specific board
+            const boardRef = doc(db, `users/${user.uid}/Boards/${Board.id}`); 
             const boardSnap = await getDoc(boardRef);
   
             if (boardSnap.exists()) {
@@ -46,10 +62,12 @@ export function Bord() {
                 data: boardSnap.data(),
               };
               setBoards2(specificBoard); 
+             
               setVisibility(specificBoard.data.boardVisibility); 
+              setsharedWith(specificBoard.data.sharedWith);
             } else {
               console.log("No such board!");
-              setBoards2({}); // Reset state if board not found
+              setBoards2({}); 
             }
           } catch (error) {
             console.error('Error fetching board:', error);
@@ -63,7 +81,7 @@ export function Bord() {
     });
   
     return () => unsubscribeAuth();
-  }, [Board.id]);
+  }, []);
 
 
    const handleClickOutsideForShare = (event) => {
@@ -136,7 +154,7 @@ export function Bord() {
   const ExitFromAddingList=()=>{
     setcreateList(false);
   }
-  
+ 
  
   useEffect(() => {
     const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
@@ -268,7 +286,7 @@ export function Bord() {
   return (
    <div style={style} className= {`  h-screen flex flex-col max-h-screen  overflow-x-auto z-0 ${Board.background} `}>
 
-<nav className='bg-gray-200 bg-opacity-30 py-2.5 pl-0.5 pl-3.5 pr-2 sm:pr-5 text-md fixed w-screen items-center top-11'>
+<nav className='bg-gray-400 bg-opacity-55  sm:bg-opacity-50  py-2.5 pl-0.5 pl-3.5 pr-2 sm:pr-5 text-md fixed w-screen items-center top-11'>
   <div className='flex justify-between  '>
     <div className='flex gap-5'>
       <p className='text-white font-bold text-md sm:text-xl cursor-pointer'>{Board.title}</p>
@@ -304,7 +322,7 @@ export function Bord() {
     </div>
 
     </div>
-    <div className='  bg-slate-100 text-zinc-950 flex items-center gap-1 px-1.5 rounded-md  hover:bg-slate-200  cursor-pointer'>  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.4" stroke="currentColor" className="w-5 h-5">
+    <div onClick={()=>{setIsOpen2(!isOpen2)}} className='  bg-slate-100 text-zinc-950 flex items-center gap-1 px-1.5 rounded-md  hover:bg-slate-200  cursor-pointer'>  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.4" stroke="currentColor" className="w-5 h-5">
     <path strokeLinecap="round" strokeLinejoin="round" d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
   </svg>
   Share</div>
@@ -312,10 +330,11 @@ export function Bord() {
 </nav>
 
 
-   
+{isOpen2&&( <div ref={dropdown2Ref} ><ShareMenu visibility={visibility} id={Board.id} Board={Boards2} BoardMember={sharedWith}/></div>)}
     <div  ref={BordContainer} className={`ml-6 sm:pl-6 md:ml-0 overflow-x-auto BOARDS  overflow-y-hidden  h-screen over px-3   sm:gap-10 sm:mt-32 flex gap-16 mt-32  ${!isDragging?'BordContainer':" "}`}>
     <DndContext  onDragStart={handleDragStart} sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
     <SortableContext items={lists} strategy={verticalListSortingStrategy}>
+     
     {lists.map((item,index)=>(
       
       <List 

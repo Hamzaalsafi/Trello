@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { auth } from './firebase2'; 
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc,getDoc } from 'firebase/firestore';
 import { useNavigate  } from 'react-router-dom';
 import { db } from './firebase2';
 export function CreateBoards() {
@@ -83,26 +83,51 @@ const handleTitle=(e)=>{
       setFailed("Make sure you choose a visibility option")
     }
     else{
-    const user = auth.currentUser;
-    if(user){
-     try{
-      const id = new Date().getTime().toString();
-      const BoardDocRef = doc(db, `users/${user.uid}/Boards`, id);
-      const Private=boardVisibility==="Shareable Board"?"shareable":"private";
-      const newBoard={id:id,title:boardTitle,background:background,backgroundImage:images,boardVisibility:Private,sharedWith:[id]};
-      await setDoc(BoardDocRef, newBoard);
-      navigate(`/Board/${id}`,{state:newBoard})
-     }
-     catch(error){
-       console.log(error);
-     }
+      const user = auth.currentUser;
+      if (user) {
+        try {
+          // Reference to the user's document to get the name
+          const userDocRef = doc(db, `users/${user.uid}`);
+          const userSnapshot = await getDoc(userDocRef);
+      
+          let userName = '';
+          let avatar={};
+          if (userSnapshot.exists()) {
+            const userData = userSnapshot.data();
+            userName = userData.name; 
+            avatar=userData.avatar;
 
+          }
+      
+          const id = new Date().getTime().toString();
+          const BoardDocRef = doc(db, `users/${user.uid}/Boards`, id);
+      
+          const Private = boardVisibility === "Shareable Board" ? "shareable" : "private";
+          const newBoard = {
+            id: id,
+            title: boardTitle,
+            background: background,
+            backgroundImage: images,
+            boardVisibility: Private,
+            sharedWith: [
+              {
+                id: user.uid,
+                email: user.email,
+                name: userName, 
+                avatar: avatar,
+              },
+            ],
+          };
+      
+          await setDoc(BoardDocRef, newBoard);
+          navigate(`/Board/${id}`, { state: newBoard });
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        alert("Please Sign In First");
+      }
     }
-    else{
-      alert("Please Sign In First");
-     
-    }
-  }
   }
   return (
 <div className='flex  mt-10 items-center z-10  w-screen h-screen px-7  flex-col'>
