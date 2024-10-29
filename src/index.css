@@ -45,7 +45,9 @@ body {
   .main .input:focus,.input:hover ,.main .input:valid ,.button2:hover {
     border-color: lightblue;
   }
-  
+  Canvas{
+    height: 100vh;
+}
   .main label span {
     position: absolute;
     top: 0px;
