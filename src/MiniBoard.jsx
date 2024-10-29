@@ -15,7 +15,7 @@ export function MiniBoard(Board) {
                     observer.disconnect();
                 }
             },
-            { threshold: 0.1 } // Adjust this value as needed
+            { threshold: 0.1 } 
         );
 
         if (ref.current) {

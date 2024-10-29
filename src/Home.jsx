@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {SharedBoards} from './SharedBoards';
 import NewtonsCradle from './NewtonsCradle';
 import GraphAnimation from './GraphAnimation';
-import { useLocation } from 'react-router-dom';
+
 import GraphLeft from './GraphLeft';
 export function Home() {
   const [text]=useTypewriter({

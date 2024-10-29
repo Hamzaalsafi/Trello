@@ -9,9 +9,7 @@ import { useLocation } from 'react-router-dom';
 import { db } from './firebase2';
 import {ShareMenu} from './ShareMenu'
 import { DndContext,TouchSensor, closestCenter, useSensor, useSensors, MouseSensor } from '@dnd-kit/core';
-import { CSS } from '@dnd-kit/utilities';
-import { useSortable } from '@dnd-kit/sortable';
-import { useMenuContext } from './MenuProvider';
+
 import { SortableContext, verticalListSortingStrategy, arrayMove } from '@dnd-kit/sortable';
 export function Bord() {
   const BordContainer=useRef(null);

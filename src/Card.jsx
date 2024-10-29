@@ -4,7 +4,7 @@ import { doc, updateDoc,deleteDoc } from "firebase/firestore";
 import { db } from './firebase2'; 
 import { auth } from './firebase2';
 import { useSortable } from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
+
 import { useMenuContext } from './MenuProvider';
 export function Card({title,id,listid,labels,item,BoardId}) {
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -427,8 +427,8 @@ Delete
   className="CARD  touch-action: none; flex flex-col cursor-pointer focus:border-solid focus:border-blue-500 focus:box-shadow focus:outline-none bg-gray-800 text-gray-300 text-md p-1 px-2.5 rounded-md w-full mx-0 my-1.5"
 >
   <div className='flex flex-wrap gap-2'>
-      {cardLable.label1&&(<span className='relative -z-1 bg-green-600 w-11 rounded-2xl h-[.5rem] -ml-0.5 mb-0.5 -mt-1.5' ></span>)}
-      {cardLable.label2&&(<span className='relative  -z-1 bg-yellow-800 w-11 rounded-2xl h-[.5rem] -ml-0.5 mb-0.5 -mt-1.5' ></span>)}
+      {cardLable.label1&&(<span className='relative -z1 bg-green-600 w-11 rounded-2xl h-[.5rem] -ml-0.5 mb-0.5 -mt-1.5' ></span>)}
+      {cardLable.label2&&(<span className='relative bg-yellow-800 w-11 rounded-2xl h-[.5rem] -ml-0.5 mb-0.5 -mt-1.5' ></span>)}
       {cardLable.label3&&(<span className='relative bg-amber-600  w-11 rounded-2xl h-[.5rem] -ml-0.5 mb-0.5 -mt-1.5' ></span>)}
       {cardLable.label4&&(<span className='relative bg-red-700 opacity-90 w-11 rounded-2xl h-[.5rem] -ml-0.5 mb-0.5 -mt-1.5' ></span>)}
       {cardLable.label5&&(<span className=' relative bg-indigo-700 w-11 rounded-2xl h-[.5rem] -ml-0.5 mb-0.5 -mt-1.5' ></span>)}
