@@ -30,7 +30,7 @@ export function Login() {
           const userCredential = await signInWithEmailAndPassword(auth, email, password);
          
      
-          navigate('/Trello/Home'); 
+          navigate('/Home'); 
       } catch (error) {
           console.error('Login error:', error);
           setError('Error logging in: ' + error.message);
@@ -74,7 +74,7 @@ export function Login() {
         avatar: { color: avatarColor, initials: initials }, // Save avatar details in Firestore
       });
   
-      navigate('/Trello/Home'); 
+      navigate('/Home'); 
     } catch (error) {
       console.error('Error creating account:', error);
       setError2('Error creating account: ' + error.message);
@@ -93,7 +93,7 @@ export function Login() {
             <button onClick={handleAnimation} className="bg-blue-500 hover:bg-blue-600 text-gray-100 m-4  py-1.5 px-20 rounded-2xl  text-m">
             Sign in
 </button>
-        <img src='/cat.svg' className=' hover:scale-110 hover:transform-cpu' alt="cat" />  
+        <img src='./cat.svg' className=' hover:scale-110 hover:transform-cpu' alt="cat" />  
         </div>
         
         <form className='singinfrom flex flex-col justify-center items-center' onSubmit={handleLogin}>
@@ -127,7 +127,7 @@ export function Login() {
             <button onClick={handleAnimation} className="bg-blue-500 hover:bg-blue-600 text-gray-100 m-4  py-1.5 px-20 rounded-2xl  text-m">
             Sign in
 </button>
-<img src='/cat2.svg' className=' hover:scale-110 hover:transform-cpu' alt="cat" />  
+<img src='./cat2.svg' className=' hover:scale-110 hover:transform-cpu' alt="cat" />  
         </div>
      
       <form className='signupfrom flex flex-col  items-center' onSubmit={handleCreateAccount}>

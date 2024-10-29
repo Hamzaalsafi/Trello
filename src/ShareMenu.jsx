@@ -45,7 +45,7 @@ export function ShareMenu( {BoardMember,visibility,id,Board}) {
       }
     return (
         
-        <div className='bg-zinc-800 flex flex-col absolute  sm:top-24 top-[5.55em]   right-3  h-fit w-fit py-3 rounded-lg px-3.5 justify-start'>
+        <div className='bg-zinc-800 flex flex-col absolute  sm:top-24 top-[5.55em] z-[10000]   right-3  h-fit w-fit py-3 rounded-lg px-3.5 justify-start'>
      {visibility==="private"&&( <div className='w-[100%]  top-[-.2%]  p-1 right-[.1px]  h-[100%] absolute rounded-lg bg-zinc-950 bg-opacity-90 flex justify-center items-center'>
         <div className='flex flex-col'>
         <h1 className='text-gray-300 text-center text-lg'>This Board is private.</h1>

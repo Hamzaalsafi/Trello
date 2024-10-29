@@ -6,28 +6,28 @@ import { useNavigate  } from 'react-router-dom';
 import { db } from './firebase2';
 export function CreateBoards() {
   const imgBackground=[
-  "/alone-lonely-loneliness-dream-planet-robot-butterflies-3840x2160-6347.jpg",
-  "/alone-surreal-dream-fishes-moon-travel-explorer-3840x2160-1058.jpg",
-  "/astronaut-asteroids-blue-planet-space-travel-no-gravity-3840x2160-2484.jpg",
-  "/astronaut-nasa-flower-garden-butterflies-surreal-moon-3840x2160-3197.jpg",
-  "/astronaut-space-cosmos-planet-rings-of-saturn-orbit-surreal-3840x2160-6739.jpg",
-  "/astronaut-space-station-laptop-sci-fi-space-suit-lights-3840x2160-2478.jpg",
-  "/astronaut-space-travel-gravity-earth-nebula-universe-galaxy-3840x2160-2352.jpg",
-  "/balancing-rocks-3840x2160-16599.jpg",
-  "/couple-lovers-above-clouds-surreal-dream-romantic-together-3840x2160-6250.jpg",
-  "/cozy-cabin-sunset-3840x2160-14443.jpg",
+  "./alone-lonely-loneliness-dream-planet-robot-butterflies-3840x2160-6347.jpg",
+  "./alone-surreal-dream-fishes-moon-travel-explorer-3840x2160-1058.jpg",
+  "./astronaut-asteroids-blue-planet-space-travel-no-gravity-3840x2160-2484.jpg",
+  "./astronaut-nasa-flower-garden-butterflies-surreal-moon-3840x2160-3197.jpg",
+  "./astronaut-space-cosmos-planet-rings-of-saturn-orbit-surreal-3840x2160-6739.jpg",
+  "./astronaut-space-station-laptop-sci-fi-space-suit-lights-3840x2160-2478.jpg",
+  "./astronaut-space-travel-gravity-earth-nebula-universe-galaxy-3840x2160-2352.jpg",
+  "./balancing-rocks-3840x2160-16599.jpg",
+  "./couple-lovers-above-clouds-surreal-dream-romantic-together-3840x2160-6250.jpg",
+  "./cozy-cabin-sunset-3840x2160-14443.jpg",
  
-  "/dolomites-mountains-milky-way-night-starry-sky-dolomite-7000x3937-8361.jpg",
-  "/earth-clouds-surreal-star-trek-digital-composition-3840x2160-6075.jpg",
-  "/full-moon-landscape-3840x2160-13385.jpg",
-  "/gta-6-teaser-3840x2160-13559.png",
-  "/hot-air-balloon-night-full-moon-dark-background-sea-stars-3840x2160-2409.jpg",
-  "/lakeside-sunset-deer-minimal-art-landscape-scenic-panorama-3840x2160-4592.png",
-  "/lighthouse-sunset-dusk-twilight-seascape-scenic-ocean-5k-3840x2160-451.jpg",
-  "/moon-night-seascape-sailing-boat-blue-minimal-5k-8k-3840x2160-4522.jpg",
-  "/night-man-alone-starry-sky-night-sky-comet-silhouette-3840x2160-8325.jpg",
+  "./dolomites-mountains-milky-way-night-starry-sky-dolomite-7000x3937-8361.jpg",
+  "./earth-clouds-surreal-star-trek-digital-composition-3840x2160-6075.jpg",
+  "./full-moon-landscape-3840x2160-13385.jpg",
+  "./gta-6-teaser-3840x2160-13559.png",
+  "./hot-air-balloon-night-full-moon-dark-background-sea-stars-3840x2160-2409.jpg",
+  "./lakeside-sunset-deer-minimal-art-landscape-scenic-panorama-3840x2160-4592.png",
+  "./lighthouse-sunset-dusk-twilight-seascape-scenic-ocean-5k-3840x2160-451.jpg",
+  "./moon-night-seascape-sailing-boat-blue-minimal-5k-8k-3840x2160-4522.jpg",
+  "./night-man-alone-starry-sky-night-sky-comet-silhouette-3840x2160-8325.jpg",
 
-  "/sun-valley-purple-sky-cracked-daytime-surreal-scenery-5k-3840x2160-3280.jpg"
+  "./sun-valley-purple-sky-cracked-daytime-surreal-scenery-5k-3840x2160-3280.jpg"
   ]
   const navigate = useNavigate();
 
@@ -120,7 +120,7 @@ const handleTitle=(e)=>{
           };
       
           await setDoc(BoardDocRef, newBoard);
-          navigate(`/Trello/Board/${id}`, { state: newBoard });
+          navigate(`/Board/${id}`, { state: newBoard });
         } catch (error) {
           console.log(error);
         }

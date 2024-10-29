@@ -331,7 +331,7 @@ export function Bord() {
 
 
 {isOpen2&&( <div ref={dropdown2Ref} ><ShareMenu visibility={visibility} id={Board.id} Board={Boards2} BoardMember={sharedWith}/></div>)}
-    <div  ref={BordContainer} className={`ml-6 sm:pl-6 md:ml-0 overflow-x-auto BOARDS  overflow-y-hidden  h-screen over px-3   sm:gap-10 sm:mt-32 flex gap-16 mt-32  ${!isDragging?'BordContainer':" "}`}>
+    <div  ref={BordContainer} className={`ml-6  sm:pl-6 md:ml-0 overflow-x-auto BOARDS  overflow-y-hidden  h-screen over px-3    sm:gap-10 sm:mt-32 flex gap-16 mt-32  ${!isDragging?'BordContainer':" "}`}>
     <DndContext  onDragStart={handleDragStart} sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
     <SortableContext items={lists} strategy={verticalListSortingStrategy}>
      

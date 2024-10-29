@@ -16,15 +16,15 @@ function App() {
 
 function Main() {
   const location = useLocation();
-  const Loginctl = '/Trello';
+  const Loginctl = '/';
 
   return (
     <div className="app">
       {location.pathname !== Loginctl && <NavBar />}
       <Routes>
-        <Route path="/Trello/Home" element={<Home/>} />
-        <Route path="/Trello" element={<Login />} />
-        <Route path="Trello/Board/:id" element={<Bord />} />
+        <Route path="/Home" element={<Home/>} />
+        <Route path="/" element={<Login />} />
+        <Route path="/Board/:id" element={<Bord />} />
       </Routes>
     </div>
   );
